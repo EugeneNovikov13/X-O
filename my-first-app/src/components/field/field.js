@@ -1,4 +1,4 @@
-import { Cell } from '../cell/cell';
+import { Cell } from '../index';
 import styles from './field.module.css';
 import PropTypes from 'prop-types';
 

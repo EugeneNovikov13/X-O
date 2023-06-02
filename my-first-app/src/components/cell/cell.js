@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 export const Cell = ({ label, value, handleCellClick }) => {
 	return (
-		<div className={styles.cell} onClick={() => handleCellClick(label, value)}>
+		<div
+			className={styles.cell}
+			onClick={() => (value === '' ? handleCellClick(label) : null)}
+		>
 			{value}
 		</div>
 	);
