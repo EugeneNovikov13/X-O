@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 export const AppLayout = ({
 	sym,
 	victory,
-	cells,
-	handleCellClick,
-	refreshButtonClick,
+	// cells,
+	// handleCellClick,
+	// refreshButtonClick,
 }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.game}>
 				<Header sym={sym} victory={victory} />
-				<Field cells={cells} handleCellClick={handleCellClick} />
-				<Continue refreshButtonClick={refreshButtonClick} />
+				<Field />
+				<Continue />
 			</div>
 		</div>
 	);
