@@ -22,7 +22,7 @@ export const appReducer = (state = initialState, action) => {
 			return {
 				...state,
 				cells: state.cells.map(el =>
-					el.label === payload.label ? { ...el, value: payload.sym } : el,
+					el.label === payload ? { ...el, value: state.sym } : el,
 				),
 			};
 		}

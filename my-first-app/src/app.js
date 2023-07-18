@@ -5,41 +5,34 @@ import { AppLayout } from './app-layout';
 import { store } from './store';
 
 export const App = () => {
-	const appStore = store.getState();
-	const [appState, setAppState] = useState(store.getState());
-	// const [sym, setSym] = useState('X');
-	// const [victory, setVictory] = useState(false);
-	// const [cells, setCells] = useState(initField);
-	const { sym, cells, victory } = store.getState();
+	const { sym, victory, cells } = store.getState();
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
-		setAppState(appStore);
-		console.log('useEffect');
 		checkVictory(cells, sym)
 			? store.dispatch({ type: 'SET_VICTORY_TRUE' })
 			: sym === 'X'
 			? store.dispatch({ type: 'CHANGE_SYMBOL', payload: '○' })
 			: store.dispatch({ type: 'CHANGE_SYMBOL', payload: 'X' });
-	}, [appStore]);
+		setRefresh(!refresh);
+	}, [cells]);
 
-	// const handleCellClick = lab => {
-	// 	if (victory) return;
-	// 	const newCells = cells.map(el => (el.label === lab ? { ...el, value: sym } : el));
-	// 	setCells(newCells);
-	// };
+	const handleCellClick = lab => {
+		if (victory) return;
+		store.dispatch({ type: 'FIELD_CLICK', payload: lab });
+	};
 
-	// const refreshButtonClick = () => {
-	// 	setCells(initField);
-	// 	setVictory(false);
-	// };
+	const refreshButtonClick = () => {
+		store.dispatch({ type: 'REFRESH_FIELD' });
+	};
 
 	return (
 		<AppLayout
 			sym={sym}
 			victory={victory}
-			// cells={cells}
-			// handleCellClick={handleCellClick}
-			// refreshButtonClick={refreshButtonClick}
+			cells={cells}
+			handleCellClick={handleCellClick}
+			refreshButtonClick={refreshButtonClick}
 		/>
 	);
 };
