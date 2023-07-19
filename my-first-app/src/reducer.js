@@ -1,8 +1,8 @@
-import { initField } from './constants/constants';
+import { INIT_FIELD } from './constants/constants';
 
 const initialState = {
 	sym: 'X',
-	cells: initField,
+	cells: INIT_FIELD,
 	victory: false,
 };
 
@@ -13,7 +13,7 @@ export const appReducer = (state = initialState, action) => {
 		case 'REFRESH_FIELD': {
 			return {
 				...state,
-				cells: initField,
+				cells: payload,
 				victory: false,
 			};
 		}
@@ -27,18 +27,28 @@ export const appReducer = (state = initialState, action) => {
 			};
 		}
 
-		case 'SET_VICTORY_TRUE': {
-			return {
-				...state,
-				victory: true,
-			};
+		case 'CHECK_VICTORY': {
+			return payload.some(comb =>
+				comb.every(el => state.cells[el].value === state.sym),
+			)
+				? {
+						...state,
+						victory: true,
+				  }
+				: state;
 		}
 
 		case 'CHANGE_SYMBOL': {
-			return {
-				...state,
-				sym: payload,
-			};
+			if (state.victory) return state;
+			return state.sym === 'X'
+				? {
+						...state,
+						sym: '○',
+				  }
+				: {
+						...state,
+						sym: 'X',
+				  };
 		}
 
 		default:

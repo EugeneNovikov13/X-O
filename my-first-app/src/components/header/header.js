@@ -1,12 +1,10 @@
 import styles from './header.module.css';
-import PropTypes from 'prop-types';
+import { store } from '../../store';
 
-export const Header = ({ sym, victory }) => {
+export const Header = () => {
+	const { sym, victory } = store.getState();
+
 	return (
 		<div className={styles.header}>{victory ? `Победил ${sym}` : `Ходит ${sym}`}</div>
 	);
-};
-
-Header.propTypes = {
-	sym: PropTypes.string,
 };

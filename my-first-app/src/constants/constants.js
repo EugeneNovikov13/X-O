@@ -1,4 +1,4 @@
-export const initField = [
+export const INIT_FIELD = [
 	{ label: '1', value: '' },
 	{ label: '2', value: '' },
 	{ label: '3', value: '' },
@@ -10,7 +10,7 @@ export const initField = [
 	{ label: '9', value: '' },
 ];
 
-export const victoryCombination = [
+export const VICTORY_COMBINATION = [
 	[0, 1, 2],
 	[3, 4, 5],
 	[6, 7, 8],

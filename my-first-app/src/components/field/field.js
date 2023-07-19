@@ -1,8 +1,10 @@
 import { Cell } from '../index';
 import styles from './field.module.css';
-import PropTypes from 'prop-types';
+import { store } from '../../store';
 
-export const Field = ({ cells, handleCellClick }) => {
+export const Field = ({ appState, setAppState }) => {
+	const { cells } = store.getState();
+
 	return (
 		<div className={styles.field}>
 			{cells.map(({ label, value }) => (
@@ -10,14 +12,10 @@ export const Field = ({ cells, handleCellClick }) => {
 					key={'cell' + label}
 					label={label}
 					value={value}
-					handleCellClick={handleCellClick}
+					appState={appState}
+					setAppState={setAppState}
 				/>
 			))}
 		</div>
 	);
-};
-
-Field.propTypes = {
-	cells: PropTypes.array,
-	handleCellClick: PropTypes.func,
 };
