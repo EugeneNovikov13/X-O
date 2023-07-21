@@ -2,10 +2,10 @@ import styles from './continue.module.css';
 import { store } from '../../store';
 import { INIT_FIELD } from '../../constants/constants';
 
-export const Continue = ({ appState, setAppState }) => {
+export const Continue = () => {
 	const onClick = () => {
 		store.dispatch({ type: 'REFRESH_FIELD', payload: INIT_FIELD });
-		setAppState(!appState);
+		store.subscribe();
 	};
 
 	return (

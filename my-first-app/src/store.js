@@ -9,6 +9,7 @@ const createStore = reducer => {
 		},
 
 		getState: () => state,
+		subscribe: null,
 	};
 };
 

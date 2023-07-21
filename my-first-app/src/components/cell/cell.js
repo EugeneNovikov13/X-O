@@ -2,7 +2,7 @@ import styles from './cell.module.css';
 import { store } from '../../store';
 import { VICTORY_COMBINATION } from '../../constants/constants';
 
-export const Cell = ({ label, value, appState, setAppState }) => {
+export const Cell = ({ label, value }) => {
 	const { victory } = store.getState();
 
 	const handleCellClick = lab => {
@@ -10,7 +10,7 @@ export const Cell = ({ label, value, appState, setAppState }) => {
 		store.dispatch({ type: 'FIELD_CLICK', payload: lab });
 		store.dispatch({ type: 'CHECK_VICTORY', payload: VICTORY_COMBINATION });
 		store.dispatch({ type: 'CHANGE_SYMBOL' });
-		setAppState(!appState);
+		store.subscribe();
 	};
 
 	return (

@@ -1,13 +1,13 @@
 import styles from './app.module.css';
 import { Continue, Field, Header } from './components';
 
-export const AppLayout = ({ appState, setAppState }) => {
+export const AppLayout = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.game}>
 				<Header />
-				<Field appState={appState} setAppState={setAppState} />
-				<Continue appState={appState} setAppState={setAppState} />
+				<Field />
+				<Continue />
 			</div>
 		</div>
 	);
