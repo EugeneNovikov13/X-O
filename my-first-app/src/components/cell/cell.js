@@ -1,16 +1,18 @@
 import styles from './cell.module.css';
-import { store } from '../../store';
-import { VICTORY_COMBINATION } from '../../constants/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectVictory } from '../../selectors';
+import { CHANGE_SYMBOL, CHECK_VICTORY, fieldClick } from '../../actions';
 
 export const Cell = ({ label, value }) => {
-	const { victory } = store.getState();
+	const dispatch = useDispatch();
+
+	const victory = useSelector(selectVictory);
 
 	const handleCellClick = lab => {
 		if (victory) return;
-		store.dispatch({ type: 'FIELD_CLICK', payload: lab });
-		store.dispatch({ type: 'CHECK_VICTORY', payload: VICTORY_COMBINATION });
-		store.dispatch({ type: 'CHANGE_SYMBOL' });
-		store.subscribe();
+		dispatch(fieldClick(lab));
+		dispatch(CHECK_VICTORY);
+		dispatch(CHANGE_SYMBOL);
 	};
 
 	return (

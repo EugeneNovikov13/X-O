@@ -1,11 +1,12 @@
 import styles from './continue.module.css';
-import { store } from '../../store';
-import { INIT_FIELD } from '../../constants/constants';
+import { useDispatch } from 'react-redux';
+import { REFRESH_FIELD } from '../../actions';
 
 export const Continue = () => {
+	const dispatch = useDispatch();
+
 	const onClick = () => {
-		store.dispatch({ type: 'REFRESH_FIELD', payload: INIT_FIELD });
-		store.subscribe();
+		dispatch(REFRESH_FIELD);
 	};
 
 	return (
