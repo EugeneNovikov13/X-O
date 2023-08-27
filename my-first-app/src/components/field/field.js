@@ -1,16 +1,24 @@
-import { useSelector } from 'react-redux';
-import { selectCells } from '../../selectors';
+import { connect } from 'react-redux';
 import { Cell } from '../index';
-import styles from './field.module.css';
+import { Component } from 'react';
 
-export const Field = () => {
-	const cells = useSelector(selectCells);
+export class FieldContainer extends Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div className="flex flex-wrap  gap-[2px]">
+				{this.props.cells.map(({ label, value }) => (
+					<Cell key={'cell' + label} label={label} value={value} />
+				))}
+			</div>
+		);
+	}
+}
 
-	return (
-		<div className={styles.field}>
-			{cells.map(({ label, value }) => (
-				<Cell key={'cell' + label} label={label} value={value} />
-			))}
-		</div>
-	);
-};
+const mapStateToProps = state => ({
+	cells: state.cells,
+});
+
+export const Field = connect(mapStateToProps)(FieldContainer);

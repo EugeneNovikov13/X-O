@@ -1,17 +1,28 @@
-import styles from './continue.module.css';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { REFRESH_FIELD } from '../../actions';
+import { Component } from 'react';
 
-export const Continue = () => {
-	const dispatch = useDispatch();
+export class ContinueContainer extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-	const onClick = () => {
+	render() {
+		return (
+			<button
+				className="border w-[154px] h-[40px] text-xl mt-1"
+				onClick={this.props.continueButtonClick}
+			>
+				Заново
+			</button>
+		);
+	}
+}
+
+const mapDispatchToProps = dispatch => ({
+	continueButtonClick: () => {
 		dispatch(REFRESH_FIELD);
-	};
+	},
+});
 
-	return (
-		<button className={styles.continue} onClick={onClick}>
-			Заново
-		</button>
-	);
-};
+export const Continue = connect(null, mapDispatchToProps)(ContinueContainer);
